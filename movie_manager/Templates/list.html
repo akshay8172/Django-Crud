@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <style>
+        .img{
+            height: 200px;
+            width: 200px;
+        }
+        .table{
+            margin-left: 20px;
+            font-size: 30px;
+            background-color: aqua;
+            color:black;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
+</head>
+<body>
+    {% extends "blank_layout.html" %}
+    {% block content %}
+    {% load static %}
+    <h1>Current Movie Lists</h1>
+    <table border="1" class="table">
+        <tr>
+            <th>TITLE</th>
+            <th>SUMMARY</th>
+            <th>YEAR</th>
+            <th>EDIT / DELETE</th>
+        </div></tr>
+    {% for movie_objects in movies %}  
+    <tr>
+        <td>{{movie_objects.title|upper}}</td>
+        <td>{{movie_objects.summary}}<br></td>
+        <td>{{movie_objects.year}}<br></td>
+        <td><a href="{% url 'edit' movie_objects.id %}">Edit</a>&nbsp;
+            <a href="{% url 'delete' movie_objects.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+    {% endblock content %}
+</body>
+</html>
